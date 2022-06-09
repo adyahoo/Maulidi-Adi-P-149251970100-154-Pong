@@ -5,7 +5,10 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
     public Vector2 speed;
+
     private Rigidbody2D rig;
+
+    public Vector2 resetPosition;
 
     // Start is called before the first frame update
     private void Start()
@@ -20,5 +23,10 @@ public class BallController : MonoBehaviour
         //function to get component transform
         // Transform.position = transform.position + (new Vector3(0.1f, 0,0) * Time.deltaTime );
         // transform.Translate(speed * Time.deltaTime);
+    }
+
+    public void resetBall()
+    {
+        transform.position = new Vector2(resetPosition.x, resetPosition.y);
     }
 }
