@@ -21,6 +21,12 @@ public class MainMenuController : MonoBehaviour
         SceneManager.LoadScene("Game");
     }
 
+    //navigate to credit scene
+    public void openCredit()
+    {
+        SceneManager.LoadScene("Credit");
+    }
+
     //create log
     public void openAuthor()
     {
