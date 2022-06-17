@@ -3,3 +3,6 @@ Logs/*
 Temp/* 
 .vs/* 
 obj/* 
+Pong.exe
+UnityCrashHandler32.exe
+UnityPlayer.dll

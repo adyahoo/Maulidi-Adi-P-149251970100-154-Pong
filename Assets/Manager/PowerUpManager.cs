@@ -20,6 +20,10 @@ public class PowerUpManager : MonoBehaviour
 
     private float timer;
 
+    // private float timerTimeout;
+
+    private GameObject powerUp;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,7 +67,7 @@ public class PowerUpManager : MonoBehaviour
 
         int randomIndex = Random.Range(0, powerUpTemplateList.Count);
 
-        GameObject powerUp =
+        powerUp =
             Instantiate(powerUpTemplateList[randomIndex],
             new Vector3(position.x,
                 position.y,
@@ -73,6 +77,18 @@ public class PowerUpManager : MonoBehaviour
         powerUp.SetActive(true);
         powerUpList.Add (powerUp);
     }
+
+    // private void timeoutPowerUp(int timeout)
+    // {
+    //     timerTimeout += Time.deltaTime;
+    //     Debug.Log("timer start : "+ timerTimeout);
+    //     if (timerTimeout > timeout)
+    //     {
+    //         Debug.Log("timeout");
+    //         removePowerUp (powerUp);
+    //         timerTimeout = 0;
+    //     }
+    // }
 
     public void removePowerUp(GameObject powerUp)
     {

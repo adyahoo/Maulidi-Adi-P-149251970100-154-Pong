@@ -12,10 +12,15 @@ public class PaddleController : MonoBehaviour
 
     private Rigidbody2D rig;
 
+    private Vector3 normalPaddle = new Vector3(0.6f, 2f, 1f);
+
+    private Vector3 longPaddle = new Vector3(0.6f, 4f, 1f);
+
     // Start is called before the first frame update
     private void Start()
     {
         rig = GetComponent<Rigidbody2D>();
+        gameObject.transform.localScale = normalPaddle;
     }
 
     // Update is called once per frame
@@ -40,7 +45,7 @@ public class PaddleController : MonoBehaviour
         if (Input.GetKey(downKey))
         {
             //down
-            Debug.Log("Paddle Speed : " + speed);
+            // Debug.Log("Paddle Speed : " + speed);
             return Vector2.down * speed;
         }
         return Vector2.zero;
@@ -50,5 +55,17 @@ public class PaddleController : MonoBehaviour
     {
         // transform.Translate(movement * Time.deltaTime);
         rig.velocity = movement;
+    }
+
+    public void activateWidthUp()
+    {
+        StartCoroutine(widthUpState(5f));
+    }
+
+    private IEnumerator widthUpState(float time)
+    {
+        gameObject.transform.localScale = longPaddle;
+        yield return new WaitForSeconds(time);
+        gameObject.transform.localScale = normalPaddle;
     }
 }
