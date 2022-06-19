@@ -497,7 +497,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &313866752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -894,7 +894,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &780639111
 Transform:
   m_ObjectHideFlags: 0
@@ -1735,7 +1735,6 @@ MonoBehaviour:
   upKey: 273
   downKey: 274
   isRight: 1
-  paddlePosition: 0
   ball: {fileID: 2075344249}
 --- !u!61 &1709757241
 BoxCollider2D:
@@ -2079,7 +2078,6 @@ MonoBehaviour:
   - {fileID: 2072715969}
   - {fileID: 1709757241}
   manager: {fileID: 1756544068}
-  PaddleController: {fileID: 0}
 --- !u!1 &1838211444
 GameObject:
   m_ObjectHideFlags: 0
@@ -2447,7 +2445,6 @@ MonoBehaviour:
   upKey: 119
   downKey: 115
   isRight: 0
-  paddlePosition: 1
   ball: {fileID: 2075344249}
 --- !u!61 &2072715969
 BoxCollider2D:
