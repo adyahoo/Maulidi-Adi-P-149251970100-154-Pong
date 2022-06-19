@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeedUpController : MonoBehaviour
+public class PaddleSpeedUpController : MonoBehaviour
 {
     public Collider2D ball;
-    public float magnitude;
+    public Collider2D[] paddles;
     public PowerUpManager manager;
+    private PaddleController PaddleController;
 
     // Start is called before the first frame update
     void Start()
@@ -22,8 +23,9 @@ public class SpeedUpController : MonoBehaviour
     {
         if (collision == ball)
         {
-            //speed up the ball
-            ball.GetComponent<BallController>().activateSpeedUp(magnitude);
+            //speed up the paddle
+            Collider2D paddle = (PaddleController.paddlePosition == PaddleController.PaddlePosition.IS_RIGHT) ? paddles[1] : paddles[0];
+            paddle.GetComponent<PaddleController>().activateSpeedUp();
             manager.removePowerUp(gameObject);
         }
     }

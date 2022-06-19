@@ -5,23 +5,16 @@ using UnityEngine;
 public class PowerUpManager : MonoBehaviour
 {
     public int maxPowerUpAmount;
-
     public Transform spawnArea;
-
     public Vector2 powerUpAreaMin;
-
     public Vector2 powerUpAreaMax;
-
-    private List<GameObject> powerUpList;
-
-    public List<GameObject> powerUpTemplateList;
-
     public int spawnInterval;
-
+    public int timeoutInterval;
+    public List<GameObject> powerUpTemplateList;
+    private List<GameObject> powerUpList;
     private float timer;
-
-    // private float timerTimeout;
-
+    private float timerTimeout;
+    private bool isTimeoutStart = false;
     private GameObject powerUp;
 
     // Start is called before the first frame update
@@ -38,7 +31,17 @@ public class PowerUpManager : MonoBehaviour
         if (timer > spawnInterval)
         {
             generateRandomPowerUp();
+            isTimeoutStart = true;
             timer -= spawnInterval;
+        }
+        if (isTimeoutStart)
+        {
+            timerTimeout += Time.deltaTime;
+            if (timerTimeout > timeoutInterval && isTimeoutStart)
+            {
+                removePowerUp(powerUpList[0]);
+                resetTimeout();
+            }
         }
     }
 
@@ -75,25 +78,14 @@ public class PowerUpManager : MonoBehaviour
             Quaternion.identity,
             spawnArea);
         powerUp.SetActive(true);
-        powerUpList.Add (powerUp);
+        powerUpList.Add(powerUp);
     }
-
-    // private void timeoutPowerUp(int timeout)
-    // {
-    //     timerTimeout += Time.deltaTime;
-    //     Debug.Log("timer start : "+ timerTimeout);
-    //     if (timerTimeout > timeout)
-    //     {
-    //         Debug.Log("timeout");
-    //         removePowerUp (powerUp);
-    //         timerTimeout = 0;
-    //     }
-    // }
 
     public void removePowerUp(GameObject powerUp)
     {
-        powerUpList.Remove (powerUp);
-        Destroy (powerUp);
+        powerUpList.Remove(powerUp);
+        resetTimeout();
+        Destroy(powerUp);
     }
 
     public void removerAllPowerUp()
@@ -102,5 +94,11 @@ public class PowerUpManager : MonoBehaviour
         {
             removePowerUp(powerUpList[0]);
         }
+    }
+
+    private void resetTimeout()
+    {
+        isTimeoutStart = false;
+        timerTimeout = 0;
     }
 }
