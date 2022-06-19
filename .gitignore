@@ -3,5 +3,5 @@ Logs/*
 Temp/* 
 .vs/* 
 obj/* 
-*.exe
-*.dll
+.exe/*
+.dll/*
